@@ -5,6 +5,7 @@ app_name='HackBitApp'
 
 urlpatterns = [
     
+     path('companies/',views.allcompany, name="all-company"),
 
     
 ]

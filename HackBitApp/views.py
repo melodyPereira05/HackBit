@@ -18,7 +18,31 @@ def popular_question(request):
     list = Data.objects.annotate(user_count=Count('users')).order_by('-user_count')
     return render(request, 'popular_question.html', {'list': datalist})
 
-def company_data(self,company_name):
+
+def company_data(request,company_name):
+    data=get_question(company_name)
+    easy=easy_question(data)
+    medium=medium_question(data)
+    hard=hard_question(data)
+    
+    context={
+       "easy":easy,
+       "medium":medium,
+       "hard":hard
+            }
+   
+    return render(request, 'company-questions.html', context)
+    
+
+def allcompany(request):
+    companyList=Company.objects.all()
+    
+    context={
+        "company_name":companyList,
+    }
+    
+    return render(request, 'company_names.html', context)
+    
     
     
     

@@ -1,16 +1,18 @@
 from django.db import models
 from datetime import datetime
 from django.urls import reverse
-from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 
 class Company(models.Model):
     name=models.CharField(unique=True,max_length=200,db_index=True)
+    photo=models.ImageField(upload_to='photos/company/')
     slug=models.SlugField(max_length=200,unique=True)
     
     def get_absolute_url(self):
-        return reverse('HackBitApp:company-name',args=[self.slug])
+        return reverse('HackBitApp:all-company',args=[self.slug])
     
     class Meta:        
         ordering=('name',)
