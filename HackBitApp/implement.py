@@ -7,17 +7,18 @@ from bs4 import BeautifulSoup
 # if company name is more than one word
 # company = "Goldman-Sachs"
 def get_question(company_name,baseurl="https://www.geeksforgeeks.org/"):
-    company = comany_name
+    print(company_name)
+    company = company_name
     urltopic = baseurl + company + "-topics-interview-preparation"
     headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0'}
-    r = requests.get(urltopic,
-                    headers = headers)
+    r = requests.get(urltopic,headers = headers)
     soup = BeautifulSoup(r.content, 'html.parser')
     div = soup.find('div', id = "primary")
     ol = div.find_all("ol")
     return ol
 
 def getps(url):
+    headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0'}
     r1 = requests.get(url, headers = headers)
     soup1 = BeautifulSoup(r1.content, 'html.parser')
     article = soup1.find('article', class_ = True)
@@ -58,7 +59,7 @@ def getps(url):
  
    
 def easy_question(ol):        
-    easy = ol[0].find_all("a", limit = 50)
+    easy = ol[0].find_all("a", limit = 20)
     easylinks = [] 
     for i in easy:
         l = []
@@ -67,14 +68,11 @@ def easy_question(ol):
         else:
             continue 
         l.append(i["href"])
-        easylinks.append(l)   
+        easylinks.append(l) 
+          
+    return easylinks
         
-    for i in easylinks:
-        ps_and_eg, img, tags = getps(i[1])
-        i.append(ps_and_eg)
-        i.append(img)
-        i.append(tags)
-    return easylinks 
+     
  
   
 def medium_question(ol):
@@ -86,14 +84,16 @@ def medium_question(ol):
         l.append(i.get_text())
         l.append(i["href"])
         mediumlinks.append(l)
-        
-    for i in mediumlinks:   
-        ps_and_eg, img, tags = getps(i[1])
-        i.append(ps_and_eg)
-        i.append(img)
-        i.append(tags)
     
-    return mediumlinks  
+    return mediumlinks
+        
+    # for i in mediumlinks:   
+    #     ps_and_eg, img, tags = getps(i[1])
+    #     i.append(ps_and_eg)
+    #     i.append(img)
+    #     i.append(tags)
+    
+    # return mediumlinks  
    
         
     
@@ -106,15 +106,19 @@ def hard_question(ol):
     l.append(i.get_text())
     l.append(i["href"])
     hardlinks.append(l)
+    return hardlinks
       
-    for i in hardlinks:    
-        ps_and_eg, img, tags = getps(i[1])
-        i.append(ps_and_eg)
-        i.append(img)
-        i.append(tags)
-    return i
+    # for i in hardlinks:    
+    #     ps_and_eg, img, tags = getps(i[1])
+    #     i.append(ps_and_eg)
+    #     i.append(img)
+    #     i.append(tags)
+    # return i
          
  
+     
+
         
+ 
    
         

@@ -11,8 +11,9 @@ class Company(models.Model):
     photo=models.ImageField(upload_to='photos/company/')
     slug=models.SlugField(max_length=200,unique=True)
     
-    def get_absolute_url(self):
-        return reverse('HackBitApp:all-company',args=[self.slug])
+    # def get_absolute_url(self):
+    #     return reverse('HackBitApp:company_data',args=[self.slug])
+    
     
     class Meta:        
         ordering=('name',)
