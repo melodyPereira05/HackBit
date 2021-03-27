@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Contact-Us {% endblock %}
+
+{% block body %}
+<div class="app-content">
+
+<div class="u-s-p-b-60">
+
+    <!--====== Section Content ======-->
+    <div class="section__content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                    <div class="contact-o u-h-100">
+                        <div class="contact-o__wrap">
+                            <div class="contact-o__icon"><i class="fas fa-phone-volume"></i></div>
+
+                            <span class="contact-o__info-text-1">LET'S HAVE A CALL</span>
+
+                            <span class="contact-o__info-text-2">(+91) 9730519508 </span>
+
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                    <div class="contact-o u-h-100">
+                        <div class="contact-o__wrap">
+                            <div class="contact-o__icon"><i class="fas fa-map-marker-alt"></i></div>
+
+                            <span class="contact-o__info-text-1">OUR LOCATION</span>
+
+                            <span class="contact-o__info-text-2">Vasai-west,4010201</span>
+
+                            <span class="contact-o__info-text-2">MAHARASHTRA,INDIA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                    <div class="contact-o u-h-100">
+                        <div class="contact-o__wrap">
+                            <div class="contact-o__icon"><i class="far fa-clock"></i></div>
+
+                            <span class="contact-o__info-text-1">WORK TIME</span>
+
+                            <span class="contact-o__info-text-2">5 Days a Week</span>
+
+                            <span class="contact-o__info-text-2">From 9 AM to 5 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====== End - Section Content ======-->
+</div>
+
+
+<section style="padding-top: 20px;" >
+    {%include '_alerts.html' %}
+  </section>  
+
+<div class="section__content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact-area u-h-100">
+                    <div class="contact-area__heading">
+                        <h2>Get In Touch</h2>
+                    </div>
+                    <form class="contact-f" method="post" action="{% url 'contact-us' %}">
+                        {% csrf_token %}
+                        {% if user.is_authenticated %}
+                        <input type="hidden" name="user_id" value="{{user.id}}" >
+                        {% else %}
+                        <input type="hidden" name="user_id" value="0" >
+                        {% endif %}
+                        
+                        
+                        <input type="hidden" name="user_id" value="{{user.id}}" >
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 u-h-100">
+                                <div class="u-s-m-b-30">
+
+                                    <label for="c-name"></label>
+
+                                    <input name="name" class="input-text input-text--border-radius input-text--primary-style" type="text" id="c-name" placeholder="Name (Required)" {% if user.is_authenticated %} value="{{user.name}}" {% endif %}  required></div>
+                                <div class="u-s-m-b-30">
+
+                                    <label for="c-email"></label>
+
+                                    <input name="email" class="input-text input-text--border-radius input-text--primary-style" type="text" id="c-email" placeholder="Email (Required)" {% if user.is_authenticated %} value="{{user.email}}" {% endif %} required></div>
+                                <div class="u-s-m-b-30">
+
+                                    <label for="c-subject"></label>
+
+                                    <input name="subject" class="input-text input-text--border-radius input-text--primary-style" type="text" id="c-subject" placeholder="Subject (Required)" required></div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 u-h-100">
+                                <div class="u-s-m-b-30">
+
+                                    <label for="c-message"></label><textarea  name="message" class="text-area text-area--border-radius text-area--primary-style" id="c-message" placeholder="Compose a Message (Required)" required></textarea></div>
+                            </div>
+                            <div class="col-lg-12">
+
+                                <button class="btn btn--e-brand-b-2" type="submit">Send Message</button></div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
