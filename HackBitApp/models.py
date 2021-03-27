@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 class Company(models.Model):
@@ -29,7 +30,7 @@ class Topquestion(models.Model):
 
     )
     question_name=models.CharField(max_length=200,db_index=True)
-    slug=models.SlugField(max_length=200,db_index=True,null=true,blank=true)
+    slug=models.SlugField(max_length=200,db_index=True,null=True,blank=True)
     link = models.URLField(max_length=200)
     difficulty=models.CharField(max_length=10,choices=LEVEL, default='Easy')
     companyTags=models.TextField(max_length=255)
@@ -39,6 +40,12 @@ class Topquestion(models.Model):
     def get_absolute_url(self):
         return reverse('HackBitApp:top-questions',args=[self.id])
     
+    
+    class Meta:        
+        ordering=('question_name',)
+        index_together=(('id','slug'),)
+        verbose_name='topquestion'
+        verbose_name_plural='topquestions'
     def __str__(self):
         return self.question_name
     

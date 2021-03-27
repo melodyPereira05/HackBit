@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'HackBitApp.apps.AccountsConfig',
+    'HackBitApp.apps.HackbitappConfig',
 ]
 
 MIDDLEWARE = [
