@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+{% for image in roadmap %}
+<div style="background-color: black" class="bp-detail__thumbnail">
+
+    <!--====== Image Code ======-->
+    <div  class="aspect aspect--bg-grey aspect--1366-768"  >
+
+        <img class="aspect__img" src="{{ image.url }}" alt=""></div>
+    <!--====== End - Image Code ======-->
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -19,10 +19,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+
 urlpatterns = [ 
     path('admin/', admin.site.urls),
+    path('home/',include('Home.urls'),name="home"),
     path('accounts/',include('accounts.urls',namespace='accounts'),name="account-page"),
      path('hackbit/',include('HackBitApp.urls'),name="hackbitapp-page"),
+      path('Resume/',include('Resume.urls'),name="resume-page"),
+      
+     
     
     
     

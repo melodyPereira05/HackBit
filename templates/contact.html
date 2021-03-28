@@ -70,7 +70,7 @@
                     <div class="contact-area__heading">
                         <h2>Get In Touch</h2>
                     </div>
-                    <form class="contact-f" method="post" action="{% url 'contact-us' %}">
+                    <form class="contact-f" method="post" action="#">
                         {% csrf_token %}
                         {% if user.is_authenticated %}
                         <input type="hidden" name="user_id" value="{{user.id}}" >

@@ -13,7 +13,7 @@ urlpatterns = [
     path('<company_name>/roadmap',views.roadmap, name="roadmap"),
     path('<company_name>/interviewexp',views.interviewexp, name="interviewexp"),
     path('<company_name>/companyinfo',views.companyinfo, name="companyinfo"),
-     path('<ques>/',views.question, name="question"),
+    path('<ques>/',views.question, name="question"),
   
      
 # {{ps_eg}}

@@ -74,6 +74,7 @@ class Todolist(models.Model):
     
     def get_absolute_url(self):
         return reverse('HackBitApp:top-questions',args=[self.lot_id,self.slug])
+    
     def __srt__(self):
         return self.question_name
     
@@ -85,3 +86,26 @@ class Data(models.Model):
 
     def __str__(self):
         return self.popular
+    
+class Roadmap(models.Model):
+    company_name=models.CharField(unique=True,max_length=200,db_index=True)
+    photo1=models.ImageField(upload_to='photos/company/roadmap')
+    photo2=models.ImageField(upload_to='photos/company/roadmap',blank=True)
+    photo3=models.ImageField(upload_to='photos/company/roadmap',blank=True)
+    
+    class Meta:        
+        ordering=('company_name',)
+        verbose_name='roadmap'
+        verbose_name_plural='roadmaps'
+    
+    def __str__(self):
+        return self.company_name
+    
+
+class Skill(models.Model):
+    question=models.CharField(unique=True,max_length=200,db_index=True)
+    answers=models.TextField(max_length=1000)
+    
+    def __str__(self):
+        return self.question
+    

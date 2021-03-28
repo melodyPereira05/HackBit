@@ -61,9 +61,9 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         messages.add_message(request, messages.SUCCESS, 'You have been logged out successfullt')
-        return redirect('home-page')
+        return redirect('home')
     
-    return redirect('home-page')
+    return redirect('home')
 
 
 def dashboardprofile(request):

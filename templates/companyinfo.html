@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+
+
+
+
+        <!--====== App Content ======-->
+        <div class="app-content">
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-90">
+                <div   style="background-color:#bcd3f7;"  class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+
+
+                            
+                            {% for element in reviews %}
+                          
+                         
+                            <div    class="bp bp--img u-s-m-b-30">
+                                {% for key ,value in element.items %}
+                                <div>
+                                    
+                                    <div class="bp__info-wrap">
+                                        
+                                          <div class="blog-t-w">
+
+
+                                            <a class="gl-tag btn--e-transparent-hover-brand-b-2" href="blog-sidebar-none.html">{{key}}</a>
+                                        
+                                        <span class="bp__h1">
+
+                                            <a href="blog-detail.html">{{ value }} </a></span></div>
+
+                                        
+                                      
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                           
+                       
+                            {% endfor %}
+
+
+                            
+                            <nav class="post-center-wrap u-s-p-y-60">
+
+                                <!--====== Pagination ======-->
+                                <ul class="blog-pg">
+                                    <li class="blog-pg--active">
+
+                                        <a href="blog-sidebar-none.html">1</a></li>
+                                    <li>
+
+                                        <a href="blog-sidebar-none.html">2</a></li>
+                                    <li>
+
+                                        <a href="blog-sidebar-none.html">3</a></li>
+                                    <li>
+
+                                        <a href="blog-sidebar-none.html">4</a></li>
+                                    <li>
+
+                                        <a class="fas fa-angle-right" href="blog-sidebar-none.html"></a></li>
+                                </ul>
+                                <!--====== End - Pagination ======-->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section 1 ======-->
+        </div>
+        <!--====== End - App Content ======-->
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

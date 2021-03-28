@@ -1,7 +1,9 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from .implement import get_question,easy_question,medium_question,hard_question,getps
-from .models import Data,Company,Topquestion,Todolist
+from .companyinfo import getreviews,getvalues
+from .interview import get_experience
+from .models import Data,Company,Topquestion,Todolist,Roadmap,Skill
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
@@ -11,6 +13,7 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 import json
 from django.core.mail import send_mail
+
 
 #after clicking on a specific company
 
@@ -58,12 +61,26 @@ def practice(request,company_name):
     
 
 def roadmap(request,company_name):   
-   roadmap="get from data base" 
+   roadmap=get_object_or_404(Roadmap,                          
+                          company_name=company_name,
+                          )
+   roadmapl=[]
+   if roadmap:
+       roadmapl.append(roadmap.photo1)
+       roadmapl.append(roadmap.photo2)
+       roadmapl.append(roadmap.photo3)
+       
+       
+   context={
+       "roadmap":roadmapl
+   }
    return render(request, 'roadmap.html', context)
 
 def softskill(request,company_name):
-    softskills="get from db or scrape"    
-    
+    softskills=Skill.objects.all()    
+    context={
+        "skills":softskills,
+    }
     return render(request, 'softskills.html', context)
 
 
@@ -74,11 +91,23 @@ def resume(request,company_name):
 
 
 def interviewexp(request,company_name):
-    interviewexp="it is scraped"   
+    interviewexp=get_experience(company_name)
+    context={
+        'interviewexp':interviewexp,
+        'company_name':company_name
+    }   
     return render(request, 'interviewexp.html', context)
 
 def companyinfo(request,company_name):
-    companyinfo="lets see if sukhada can do or create models"
+    companyinfo_value=getvalues(company_name)
+    companyinfo_reviews=getreviews(company_name)
+   
+    context={
+        "value":companyinfo_value,
+        "reviews":companyinfo_reviews,
+        "company_name":company_name,
+    }
+    
     return render(request, 'companyinfo.html', context)
 
 def allcompany(request):

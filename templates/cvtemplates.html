@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!--====== App Content ======-->
+<div class="app-content">
+
+    <!--====== Section 1 ======-->
+    <div class="u-s-p-y-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop-p">
+                        <div class="shop-p__collection">
+                            <div class="row is-grid-active">
+                                {% for i in temp%}
+                                <!-- <div class="col-lg-3 col-md-4 col-sm-6"> -->
+                                    <div style = "height: 550px;" class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="product-m">
+                                        <div class="product-m__thumb">
+
+                                            <a href="{{i.template_image.url}}" class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+
+                                                <img class="aspect__img" src={{i.template_image.url}} alt=""></a>
+                                            <div class="product-m__quick-look">
+
+                                                <a href="{{i.template_image.url}}" class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
+                                            <div class="product-m__add-cart">
+
+                                                <a href="{{i.template_image.url}}" class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">View Template</a></div>
+                                        </div>
+                                        <div class="product-m__content">
+                                            <div class="product-m__category">
+
+                                                <a href="shop-side-version-2.html">{{i.template_type}}</a></div>
+                                            <div class="product-m__name">
+
+                                                <a href="product-detail.html">{{i.template_name}}</a></div>
+                                            <div class="product-m__rating gl-rating-style">
+                                                {% if i.stars == 0 %}
+                                                <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                                {% elif i.stars == 1 %}
+                                                <i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                                {% elif i.stars == 2 %}
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                                {% elif i.stars == 3 %}
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                                {% elif i.stars == 4 %}
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                                {%else%}
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                                {% endif %}
+                                                </div>
+                                            <!-- <div class="product-m__price">$125.00</div> -->
+                                            <div class="product-m__hover">
+                                                <div class="product-m__preview-description">
+
+                                                    <span>{{i.description}}</span></div>
+                                                <div class="product-m__wishlist">
+
+                                                    <a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="u-s-p-y-60">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====== End - Section 1 ======-->
+</div>
+<!--====== End - App Content ======-->
+
+
+{% endblock %}
